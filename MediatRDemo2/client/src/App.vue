@@ -3,7 +3,9 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <button @click="getCars">Get the first car from db</button>
     <h1>Test</h1>
-    <p>{{ carsRequested ? cars[0].name : '' }}</p>
+    <p v-for="car in cars" :key="car.name">
+      {{ carsRequested ? car.name : '' }}
+      </p>
   </div>
 </template>
 

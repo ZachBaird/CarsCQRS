@@ -18,7 +18,7 @@ namespace Data
         {
             IDocumentStore store = new DocumentStore()
             {
-                Urls = new[] { "http://127.0.0.1:8080" },
+                Urls = new[] { "http://127.0.0.1:8000" },
                 Database = "FirstDemo"
 
             }.Initialize();

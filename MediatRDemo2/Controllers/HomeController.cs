@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace MediatRDemo2.Controllers
 {
     [ApiController]
-    [Route("cars")]
+    [Route("api/cars")]
     public class HomeController : Controller
     {
         private readonly IMediator _mediator;

@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Data.Cars.Commands;
 using Data.Cars.Queries;
+using MediatRDemo2.Helpers;
 
 namespace MediatRDemo2
 {
@@ -24,6 +24,7 @@ namespace MediatRDemo2
             services.AddMediatR(typeof(GetAllCarsQuery).Assembly);
 
             services.AddControllers();
+            services.AddSpaStaticFiles(options => options.RootPath = "client/dist");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +42,14 @@ namespace MediatRDemo2
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSpaStaticFiles();
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "client";
+                if (env.IsDevelopment()) spa.UseVueDevelopmentServer();
+
             });
         }
     }

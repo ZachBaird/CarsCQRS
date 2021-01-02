@@ -18,6 +18,21 @@ namespace Data.IO
             return await session.LoadAsync<Dealership>(id);
         }
 
+        public static async Task<IEnumerable<Car>> GetCarsByDealership(string id)
+        {
+            using var session = Database.AsyncSession;
+            var dealership = await session
+                .Include<Dealership>(x => x.Cars)
+                .LoadAsync<Dealership>(id);
+
+            var results = new List<Car>();
+
+            foreach (var car in dealership.Cars)
+                results.Add(await session.LoadAsync<Car>(car));
+
+            return results;
+        }
+
         public static async Task CreateDealership(Dealership dealership)
         {
             using var session = Database.AsyncSession;

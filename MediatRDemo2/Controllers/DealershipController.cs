@@ -3,9 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Services.Dealerships.Commands;
 using Services.Dealerships.Queries;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MediatRDemo2.Controllers
@@ -39,6 +37,15 @@ namespace MediatRDemo2.Controllers
         public Task<string> Create([FromBody] CreateDealershipCommand command)
         {
             return _mediator.Send(command);
+        }
+
+        // Composite requests
+
+        [HttpGet]
+        [Route("cars")]
+        public Task<IEnumerable<Car>> FindCars([FromQuery] GetCarsByDealershipQuery query)
+        {
+            return _mediator.Send(query);
         }
     }
 }

@@ -12,6 +12,12 @@ namespace Data.IO
             return await session.Advanced.AsyncDocumentQuery<Car>().ToListAsync();
         }
 
+        public static async Task<Car> GetCarById(string id)
+        {
+            using var session = Database.AsyncSession;
+            return await session.LoadAsync<Car>(id);
+        }
+
         public static async Task CreateCar(Car car)
         {
             using var session = Database.AsyncSession;

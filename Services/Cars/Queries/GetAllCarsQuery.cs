@@ -11,10 +11,7 @@ namespace Data.Cars.Queries
 
     public sealed class GetAllCarsQueryHandler : IRequestHandler<GetAllCarsQuery, IEnumerable<Car>>
     {
-        public async Task<IEnumerable<Car>> Handle(GetAllCarsQuery request, CancellationToken cancellationToken)
-        {
-            // do business logic
-            return await IO.CarData.GetAllCars();
-        }
+        public async Task<IEnumerable<Car>> Handle(GetAllCarsQuery request, CancellationToken cancellationToken) =>
+            await IO.CarData.GetAllCars();        
     }
 }
